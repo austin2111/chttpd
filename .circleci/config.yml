@@ -12,10 +12,10 @@ jobs:
           command: |
             #sudo yum -y install libmicrohttpd
             #sudo yum -y install gcc
-             sudo apt update && sudo apt install -y libmicrohttpd12 gcc
+             sudo apt update && sudo apt install -y libmicrohttpd12 libmicrohttpd-dev gcc
       - run:
           name: Compile chttpd
-          command: gcc -O2 chttpd.c -o chttpd -L /usr/lib/x86_64-linux-gnu/ -lmicrohttpd
+          command: gcc -O2 chttpd.c -o chttpd -L /usr/lib/ -lmicrohttpd
   deploy:
     docker:
       - image: cimg/base:stable

@@ -1,0 +1,30 @@
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      # Replace this with steps to build a package, or executable
+      - run:
+          name: Install dependencies
+          command: |
+            sudo yum -y install libmicrohttpd
+            sudo yum -y install gcc
+      - run:
+          name: Compile chttpd
+          command: gcc -O2 chttpd.c -o chttpd -L /usr/lib/ -lmicrohttpd
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      # Replace this with steps to deploy to users
+      - run:
+          name: Run httpd
+          command: './chttpd'
+workflows:
+  build:
+    jobs:
+      - build
+      - deploy

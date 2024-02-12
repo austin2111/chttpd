@@ -1,6 +1,6 @@
 Compiling:
 
-gcc -O2 httpd_test.c -o httpd_test -L /usr/lib/ -lmicrohttpd
+gcc -O2 chttpd.c -o chttpd -L /usr/lib/ -lmicrohttpd
 
 Alternatively, replace /usr/lib with the path if your libmicrohttpd directory. Also, install the libmicrohttpd library.
 
